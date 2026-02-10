@@ -1,10 +1,15 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
-const PricingCard = ({ title, price, features, isPopular, formula }) => {
+const PricingCard = ({ title, price, features, isPopular, formula, formUrl }) => {
     return (
-        <div className={`relative p-8 rounded-2xl border ${isPopular ? 'bg-sae-red/10 border-sae-red shadow-[0_0_30px_rgba(217,4,41,0.2)]' : 'bg-white/5 border-white/10 hover:border-sae-red/30'} backdrop-blur-md transition-all duration-300 group`}>
+        <div className={`relative p-8 rounded-2xl border transition-all duration-300 flex flex-col ${
+            isPopular 
+                ? 'bg-sae-red/10 border-sae-red shadow-[0_0_30px_rgba(217,4,41,0.2)] hover:shadow-[0_0_50px_rgba(217,4,41,0.5)] hover:border-sae-red/80' 
+                : 'bg-white/5 border-white/10 hover:border-sae-red hover:shadow-[0_0_40px_rgba(217,4,41,0.3)] hover:bg-sae-red/5'
+        } backdrop-blur-md group`}>
             {isPopular && (
                 <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-sae-red text-white text-xs font-bold px-3 py-1 rounded-full tracking-widest uppercase">
                     Most Popular
@@ -18,7 +23,7 @@ const PricingCard = ({ title, price, features, isPopular, formula }) => {
             </div>
             <p className="text-xs text-sae-red mb-6 font-mono">{formula}</p>
 
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 flex-grow">
                 {features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3 text-sm text-gray-300">
                         <Check size={16} className="text-sae-red mt-0.5 shrink-0" />
@@ -27,20 +32,64 @@ const PricingCard = ({ title, price, features, isPopular, formula }) => {
                 ))}
             </ul>
 
-            <button className={`w-full py-3 rounded-lg text-sm font-bold tracking-widest transition-all ${isPopular ? 'bg-sae-red text-white hover:bg-red-700' : 'bg-white text-black hover:bg-gray-200'}`}>
+            <a 
+                href={formUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className={`w-full py-3 rounded-lg text-sm font-bold tracking-widest transition-all text-center block ${
+                    isPopular 
+                        ? 'bg-sae-red text-white hover:bg-red-700 hover:shadow-lg' 
+                        : 'bg-white text-black hover:bg-gray-200 hover:shadow-lg'
+                }`}
+            >
                 JOIN NOW
-            </button>
+            </a>
         </div>
     );
 };
 
 const Membership = () => {
     const tiers = [
-        { title: "1st Year (4+1)", price: "2478", formula: "₹400×4 + ₹500 + Tax", features: ["4 Year Membership", "Smart Card Access", "Freshers Kit", "Workshop Discounts"], isPopular: true },
-        { title: "2nd Year (3+1)", price: "2124", formula: "₹400×3 + ₹600 + Tax", features: ["3 Year Membership", "Access to Events", "Online Resources"], isPopular: false },
-        { title: "3rd Year (2+1)", price: "1770", formula: "₹400×2 + ₹700 + Tax", features: ["2 Year Membership", "Internship Support"], isPopular: false },
-        { title: "4th Year (1+1)", price: "1416", formula: "₹400×1 + ₹800 + Tax", features: ["1 Year Membership", "Project Guidance"], isPopular: false },
-        { title: "Annual", price: "472", formula: "₹400 + Tax", features: ["1 Year Membership"], isPopular: false },
+        { 
+            title: "1st Year (4+1)", 
+            price: "2478", 
+            formula: "₹400×4 + ₹500 + Tax", 
+            features: ["4 Year Membership", "Smart Card Access", "Freshers Kit", "Workshop Discounts"], 
+            isPopular: true, 
+            formUrl: "https://forms.google.com/your-form-url-here" 
+        },
+        { 
+            title: "2nd Year (3+1)", 
+            price: "2124", 
+            formula: "₹400×3 + ₹600 + Tax", 
+            features: ["3 Year Membership", "Access to Events", "Online Resources"], 
+            isPopular: false, 
+            formUrl: "https://forms.google.com/your-form-url-here" 
+        },
+        { 
+            title: "3rd Year (2+1)", 
+            price: "1770", 
+            formula: "₹400×2 + ₹700 + Tax", 
+            features: ["2 Year Membership", "Internship Support"], 
+            isPopular: false, 
+            formUrl: "https://forms.google.com/your-form-url-here" 
+        },
+        { 
+            title: "4th Year (1+1)", 
+            price: "1416", 
+            formula: "₹400×1 + ₹800 + Tax", 
+            features: ["1 Year Membership", "Project Guidance"], 
+            isPopular: false, 
+            formUrl: "https://forms.google.com/your-form-url-here" 
+        },
+        { 
+            title: "Annual", 
+            price: "472", 
+            formula: "₹400 + Tax", 
+            features: ["1 Year Membership"], 
+            isPopular: false, 
+            formUrl: "https://forms.google.com/your-form-url-here" 
+        },
     ];
 
     return (
